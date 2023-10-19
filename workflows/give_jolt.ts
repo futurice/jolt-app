@@ -39,7 +39,6 @@ const jolt = GiveJoltWorkflow.addStep(
       elements: [{
         name: "doer_of_good_deeds",
         title: "Whose deeds are deemed worthy of a jolt?",
-        description: "Recognizing such deeds is dazzlingly desirable of you!",
         type: Schema.slack.types.user_id,
       }, {
         name: "jolt_channel",
