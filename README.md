@@ -1,3 +1,32 @@
+# Jolt App to Slack
+
+Custom Slack app for giving jolts to colleagues.
+
+## Use cases
+
+19.10.2023, Tuomo Hakaoja
+
+- As a user I’d like to be able to jolt my colleagues in Slack.
+- To see how many jolts have been shared this week/month/year.
+- /jolt Person X for something.
+- Appears in that channel as a notification notifying the person who got the jolt.
+
+## Tutorials for creating a custom Slack app
+
+- https://api.slack.com/automation/quickstart
+- https://api.slack.com/tutorials/tracks/give-kudos
+
+## What has been done so far
+
+19.10.2023, Nelli Leinonen
+
+- This repository was created by using https://github.com/slack-samples/deno-give-kudos as a template.
+- (There is Joltbot (https://futurice.slack.com/apps/A01NPRG2AEP-joltbot?settings=1&next_id=0) in Futurice Slack workspace already. It was created in 2021 but no documentation or GitHub repository could be found.)
+
+---
+
+**Original README of the Slack example app [Give Kudos](https://github.com/slack-samples/deno-give-kudos) below:**
+
 # Give Kudos
 
 Share warm kudos and kind words with anyone in your workspace using functions
