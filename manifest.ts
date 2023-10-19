@@ -1,5 +1,4 @@
 import { Manifest } from "deno-slack-sdk/mod.ts";
-import { FindGIFFunction } from "./functions/find_gif.ts";
 import { GiveKudosWorkflow } from "./workflows/give_kudos.ts";
 
 /**
@@ -11,7 +10,7 @@ export default Manifest({
   name: "Jolt App",
   description: "Brighten someone's day with a heartfelt thank you",
   icon: "assets/icon.png",
-  functions: [FindGIFFunction],
+  // functions:
   workflows: [GiveKudosWorkflow],
   outgoingDomains: [],
   botScopes: ["commands", "chat:write", "chat:write.public"],

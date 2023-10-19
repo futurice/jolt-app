@@ -1,5 +1,4 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
-import { FindGIFFunction } from "../functions/find_gif.ts";
 
 /**
  * A workflow is a set of steps that are executed in order. Each step in a
@@ -51,34 +50,11 @@ const kudo = GiveKudosWorkflow.addStep(
         title: "What would you like to say?",
         type: Schema.types.string,
         long: true,
-      }, {
-        name: "kudo_vibe",
-        title: 'What is this kudo\'s "vibe"?',
-        description: "What sorts of energy is given off?",
-        type: Schema.types.string,
-        enum: [
-          "Appreciation for someone 🫂",
-          "Celebrating a victory 🏆",
-          "Thankful for great teamwork ⚽️",
-          "Amazed at awesome work ☄️",
-          "Excited for the future 🎉",
-          "No vibes, just plants 🪴",
-        ],
       }],
       required: ["doer_of_good_deeds", "kudo_channel", "kudo_message"],
     },
   },
 );
-
-/**
- * A custom function can be added as a workflow step to modify input data,
- * collect additional data for the response, and return information for use in
- * later steps.
- * Learn more: https://api.slack.com/automation/functions/custom
- */
-const gif = GiveKudosWorkflow.addStep(FindGIFFunction, {
-  vibe: kudo.outputs.fields.kudo_vibe,
-});
 
 /**
  * Messages can be sent into a channel with the built-in SendMessage function.
@@ -90,8 +66,7 @@ GiveKudosWorkflow.addStep(Schema.slack.functions.SendMessage, {
     `:brand_colors_jolt: Jolt for <@${kudo.outputs.fields.doer_of_good_deeds}>! ` +
     // TODO: add the name of the person giving the jolt here
     `Someone wanted to share some kind words with you :brand_colors_jolt:\n` +
-    `> ${kudo.outputs.fields.kudo_message}\n` +
-    `${gif.outputs.URL}`,
+    `> ${kudo.outputs.fields.kudo_message}\n`,
 });
 
 export { GiveKudosWorkflow };
