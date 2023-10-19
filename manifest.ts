@@ -1,5 +1,5 @@
 import { Manifest } from "deno-slack-sdk/mod.ts";
-import { GiveKudosWorkflow } from "./workflows/give_kudos.ts";
+import { GiveJoltWorkflow } from "./workflows/give_kudos.ts";
 
 /**
  * The app manifest contains the app's configuration. This file defines
@@ -11,7 +11,7 @@ export default Manifest({
   description: "Brighten someone's day with a heartfelt thank you",
   icon: "assets/icon.png",
   // functions:
-  workflows: [GiveKudosWorkflow],
+  workflows: [GiveJoltWorkflow],
   outgoingDomains: [],
   botScopes: ["commands", "chat:write", "chat:write.public"],
 });

@@ -5,9 +5,9 @@ import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
  * workflow is a function – either a built-in or custom function.
  * Learn more: https://api.slack.com/automation/workflows
  */
-const GiveKudosWorkflow = DefineWorkflow({
-  callback_id: "give_kudos_workflow",
-  title: "Give kudos",
+const GiveJoltWorkflow = DefineWorkflow({
+  callback_id: "give_jolt_workflow",
+  title: "Give jolt",
   description: "Acknowledge the impact someone had on you",
   input_parameters: {
     properties: {
@@ -28,30 +28,30 @@ const GiveKudosWorkflow = DefineWorkflow({
  * as the first step.
  * Learn more: https://api.slack.com/automation/functions#open-a-form
  */
-const kudo = GiveKudosWorkflow.addStep(
+const jolt = GiveJoltWorkflow.addStep(
   Schema.slack.functions.OpenForm,
   {
-    title: "Give someone kudos",
-    interactivity: GiveKudosWorkflow.inputs.interactivity,
+    title: "Give someone a jolt",
+    interactivity: GiveJoltWorkflow.inputs.interactivity,
     submit_label: "Share",
     description: "Continue the positive energy through your written word",
     fields: {
       elements: [{
         name: "doer_of_good_deeds",
-        title: "Whose deeds are deemed worthy of a kudo?",
+        title: "Whose deeds are deemed worthy of a jolt?",
         description: "Recognizing such deeds is dazzlingly desirable of you!",
         type: Schema.slack.types.user_id,
       }, {
-        name: "kudo_channel",
+        name: "jolt_channel",
         title: "Where should this message be shared?",
         type: Schema.slack.types.channel_id,
       }, {
-        name: "kudo_message",
+        name: "jolt_message",
         title: "What would you like to say?",
         type: Schema.types.string,
         long: true,
       }],
-      required: ["doer_of_good_deeds", "kudo_channel", "kudo_message"],
+      required: ["doer_of_good_deeds", "jolt_channel", "jolt_message"],
     },
   },
 );
@@ -60,13 +60,13 @@ const kudo = GiveKudosWorkflow.addStep(
  * Messages can be sent into a channel with the built-in SendMessage function.
  * Learn more: https://api.slack.com/automation/functions#catalog
  */
-GiveKudosWorkflow.addStep(Schema.slack.functions.SendMessage, {
-  channel_id: kudo.outputs.fields.kudo_channel,
+GiveJoltWorkflow.addStep(Schema.slack.functions.SendMessage, {
+  channel_id: jolt.outputs.fields.jolt_channel,
   message:
-    `:brand_colors_jolt: Jolt for <@${kudo.outputs.fields.doer_of_good_deeds}>! ` +
+    `:brand_colors_jolt: Jolt for <@${jolt.outputs.fields.doer_of_good_deeds}>! ` +
     // TODO: add the name of the person giving the jolt here
     `Someone wanted to share some kind words with you :brand_colors_jolt:\n` +
-    `> ${kudo.outputs.fields.kudo_message}\n`,
+    `> ${jolt.outputs.fields.jolt_message}\n`,
 });
 
-export { GiveKudosWorkflow };
+export { GiveJoltWorkflow };
