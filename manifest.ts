@@ -1,5 +1,5 @@
 import { Manifest } from "deno-slack-sdk/mod.ts";
-import { GiveJoltWorkflow } from "./workflows/give_kudos.ts";
+import { GiveJoltWorkflow } from "./workflows/give_jolt.ts";
 
 /**
  * The app manifest contains the app's configuration. This file defines

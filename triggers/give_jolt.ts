@@ -1,6 +1,6 @@
 import { Trigger } from "deno-slack-sdk/types.ts";
 import { TriggerContextData, TriggerTypes } from "deno-slack-api/mod.ts";
-import { GiveJoltWorkflow } from "../workflows/give_kudos.ts";
+import { GiveJoltWorkflow } from "../workflows/give_jolt.ts";
 
 /**
  * Triggers determine when workflows are executed. A trigger file describes a
