@@ -8,7 +8,7 @@ import { GiveKudosWorkflow } from "./workflows/give_kudos.ts";
  * Learn more: https://api.slack.com/automation/manifest
  */
 export default Manifest({
-  name: "jolt-app",
+  name: "Jolt App",
   description: "Brighten someone's day with a heartfelt thank you",
   icon: "assets/icon.png",
   functions: [FindGIFFunction],
