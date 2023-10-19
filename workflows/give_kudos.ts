@@ -87,7 +87,9 @@ const gif = GiveKudosWorkflow.addStep(FindGIFFunction, {
 GiveKudosWorkflow.addStep(Schema.slack.functions.SendMessage, {
   channel_id: kudo.outputs.fields.kudo_channel,
   message:
-    `*Hey <@${kudo.outputs.fields.doer_of_good_deeds}>!* Someone wanted to share some kind words with you :otter:\n` +
+    `:brand_colors_jolt: Jolt for <@${kudo.outputs.fields.doer_of_good_deeds}>! ` +
+    // TODO: add the name of the person giving the jolt here
+    `Someone wanted to share some kind words with you :brand_colors_jolt:\n` +
     `> ${kudo.outputs.fields.kudo_message}\n` +
     `${gif.outputs.URL}`,
 });
