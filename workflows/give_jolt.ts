@@ -72,8 +72,8 @@ const jolt = GiveJoltWorkflow.addStep(
  */
 GiveJoltWorkflow.addStep(Schema.slack.functions.SendMessage, {
   channel_id: jolt.outputs.fields.channel,
-  message: `:brand_colors_jolt: Jolt for <@${jolt.outputs.fields.jolt_to}>! ` +
-    `<@${GiveJoltWorkflow.inputs.user_id}> wanted to share some kind words with you :brand_colors_jolt:\n` +
+  message:
+    `:brand_colors_jolt: <@${jolt.outputs.fields.jolt_to}> has received a Jolt from <@${GiveJoltWorkflow.inputs.user_id}>! :brand_colors_jolt:\n` +
     `> ${jolt.outputs.fields.message}\n`,
 });
 
