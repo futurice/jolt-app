@@ -1,17 +1,17 @@
 import { Manifest } from "deno-slack-sdk/mod.ts";
+import JoltDatastore from "./datastores/jolt_data.ts";
+import { Jolt } from "./types/jolt.ts";
 import { GiveJoltWorkflow } from "./workflows/give_jolt.ts";
+import { CreateJoltFunction } from "./functions/create_jolt.ts";
 
-/**
- * The app manifest contains the app's configuration. This file defines
- * attributes like app name, description, available workflows, and more.
- * Learn more: https://api.slack.com/automation/manifest
- */
 export default Manifest({
   name: "Jolt App",
   description: "Brighten someone's day with a heartfelt thank you",
   icon: "assets/icon.png",
-  // functions:
+  functions: [CreateJoltFunction],
   workflows: [GiveJoltWorkflow],
+  datastores: [JoltDatastore],
+  types: [Jolt],
   outgoingDomains: [],
   botScopes: [
     "commands",

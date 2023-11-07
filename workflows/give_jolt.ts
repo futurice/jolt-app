@@ -1,20 +1,12 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
+import { CreateJoltFunction } from "../functions/create_jolt.ts";
 
-/**
- * A workflow is a set of steps that are executed in order. Each step in a
- * workflow is a function – either a built-in or custom function.
- * Learn more: https://api.slack.com/automation/workflows
- */
 const GiveJoltWorkflow = DefineWorkflow({
   callback_id: "give_jolt_workflow",
   title: "Give jolt",
   description: "Acknowledge the impact someone had on you",
   input_parameters: {
     properties: {
-      /**
-       * This workflow users interactivity to collect input from the user.
-       * Learn more: https://api.slack.com/automation/forms#add-interactivity
-       */
       interactivity: {
         type: Schema.slack.types.interactivity,
       },
@@ -29,11 +21,6 @@ const GiveJoltWorkflow = DefineWorkflow({
   },
 });
 
-/**
- * Collecting input from users can be done with the built-in OpenForm function
- * as the first step.
- * Learn more: https://api.slack.com/automation/functions#open-a-form
- */
 const jolt = GiveJoltWorkflow.addStep(
   Schema.slack.functions.OpenForm,
   {
@@ -66,10 +53,8 @@ const jolt = GiveJoltWorkflow.addStep(
   },
 );
 
-/**
- * Messages can be sent into a channel with the built-in SendMessage function.
- * Learn more: https://api.slack.com/automation/functions#catalog
- */
+GiveJoltWorkflow.addStep(CreateJoltFunction, {});
+
 GiveJoltWorkflow.addStep(Schema.slack.functions.SendMessage, {
   channel_id: jolt.outputs.fields.channel,
   message:
