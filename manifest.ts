@@ -13,5 +13,11 @@ export default Manifest({
   // functions:
   workflows: [GiveJoltWorkflow],
   outgoingDomains: [],
-  botScopes: ["commands", "chat:write", "chat:write.public"],
+  botScopes: [
+    "commands",
+    "chat:write",
+    "chat:write.public",
+    "datastore:write",
+    "datastore:read",
+  ],
 });
