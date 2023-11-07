@@ -1,4 +1,5 @@
 import { DefineWorkflow, Schema } from "deno-slack-sdk/mod.ts";
+import { GetJoltReportFunction } from "../functions/get_jolt_report.ts";
 
 const ReportJoltsWorkflow = DefineWorkflow({
   callback_id: "report_jolts_workflow",
@@ -17,7 +18,7 @@ const ReportJoltsWorkflow = DefineWorkflow({
   },
 });
 
-const jolt = ReportJoltsWorkflow.addStep(
+const QueryJolts = ReportJoltsWorkflow.addStep(
   Schema.slack.functions.OpenForm,
   {
     title: "Report Jolts",
@@ -50,9 +51,16 @@ const jolt = ReportJoltsWorkflow.addStep(
   },
 );
 
+const { outputs: { count } } = ReportJoltsWorkflow.addStep(
+  GetJoltReportFunction,
+  {
+    period: QueryJolts.outputs.fields.report_period,
+  },
+);
+
 ReportJoltsWorkflow.addStep(Schema.slack.functions.SendMessage, {
-  channel_id: jolt.outputs.fields.channel,
-  message: `Report test`,
+  channel_id: QueryJolts.outputs.fields.channel,
+  message: `Report test ${count}`,
 });
 
 export { ReportJoltsWorkflow };
