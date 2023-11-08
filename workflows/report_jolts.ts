@@ -4,7 +4,7 @@ import { GetJoltReportFunction } from "../functions/get_jolt_report.ts";
 const ReportJoltsWorkflow = DefineWorkflow({
   callback_id: "report_jolts_workflow",
   title: "Report Jolts",
-  description: "Report Jolts", // TODO More descriptive
+  description: "Report Jolts given during a time period",
   input_parameters: {
     properties: {
       interactivity: {
@@ -24,7 +24,8 @@ const QueryJolts = ReportJoltsWorkflow.addStep(
     title: "Report Jolts",
     interactivity: ReportJoltsWorkflow.inputs.interactivity,
     submit_label: "Share",
-    description: "Report Jolts", // TODO More descriptive
+    description:
+      "Create and a share a report of Jolts given during a time period",
     fields: {
       elements: [
         {
@@ -34,9 +35,8 @@ const QueryJolts = ReportJoltsWorkflow.addStep(
           default: ReportJoltsWorkflow.inputs.channel_id,
         },
         {
-          name: "report_period",
-          title: "Report period",
-          description: "Report period", // TODO More descriptive
+          name: "report_time_period",
+          title: "Report time period",
           type: Schema.types.string,
           enum: [
             "This week",
@@ -46,7 +46,7 @@ const QueryJolts = ReportJoltsWorkflow.addStep(
           default: "This week",
         },
       ],
-      required: ["channel", "report_period"],
+      required: ["channel", "report_time_period"],
     },
   },
 );
@@ -54,7 +54,7 @@ const QueryJolts = ReportJoltsWorkflow.addStep(
 const { outputs: { count } } = ReportJoltsWorkflow.addStep(
   GetJoltReportFunction,
   {
-    period: QueryJolts.outputs.fields.report_period,
+    time_period: QueryJolts.outputs.fields.report_time_period,
   },
 );
 

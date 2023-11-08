@@ -5,7 +5,7 @@ import { ReportJoltsWorkflow } from "../workflows/report_jolts.ts";
 const trigger: Trigger<typeof ReportJoltsWorkflow.definition> = {
   type: TriggerTypes.Shortcut,
   name: "Report Jolts",
-  description: "Report Jolts", // TODO More descriptive
+  description: "A trigger for Jolt reporting workflow",
   workflow: `#/workflows/${ReportJoltsWorkflow.definition.callback_id}`,
   inputs: {
     interactivity: {
