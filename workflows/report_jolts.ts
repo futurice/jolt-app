@@ -60,7 +60,8 @@ const { outputs: { count } } = ReportJoltsWorkflow.addStep(
 
 ReportJoltsWorkflow.addStep(Schema.slack.functions.SendMessage, {
   channel_id: QueryJolts.outputs.fields.channel,
-  message: `Report test ${count}`,
+  message:
+    `:brand_colors_jolt: ${QueryJolts.outputs.fields.report_time_period}'s Jolt count is ${count}`,
 });
 
 export { ReportJoltsWorkflow };
