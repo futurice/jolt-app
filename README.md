@@ -8,7 +8,7 @@ Custom Slack app for giving jolts to colleagues.
 
 - As a user I’d like to be able to jolt my colleagues in Slack.
 - To see how many jolts have been shared this week/month/year.
-- /jolt Person X for something.
+- /jolt Person X for something (Slash command not implemented. The Jolts are send via a form)
 - Appears in that channel as a notification notifying the person who got the jolt.
 
 ## Tutorials for creating a custom Slack app
@@ -22,6 +22,9 @@ Custom Slack app for giving jolts to colleagues.
 
 - This repository was created by using https://github.com/slack-samples/deno-give-kudos as a template.
 - (There is Joltbot (https://futurice.slack.com/apps/A01NPRG2AEP-joltbot?settings=1&next_id=0) in Futurice Slack workspace already. It was created in 2021 but no documentation or GitHub repository could be found.)
+
+9.11.2023 Ville Haapavaara
+- The slash command feature was not implemented. The Jolt can only be submitted through a form for now. The slash command would've needed a custom application hosted in a separate service with a separate datastore. With the form we were able to utilize the Slack infra (hosting, datastore etc.). This made developing the application significantly simpler
 
 ---
 
@@ -153,6 +156,8 @@ Interacting with this link will run the associated workflow.
 
 **Note: triggers won't run the workflow unless the app is either running locally
 or deployed!**
+
+**Note: Remember to run `slack trigger update --trigger-id <trigger-id>` after you've made changes to an already created trigger! Otherwise the changes made in to the trigger won't take effect.
 
 ### Manual Trigger Creation
 
