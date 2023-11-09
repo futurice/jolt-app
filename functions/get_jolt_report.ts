@@ -35,15 +35,17 @@ const formatStartAndEndDate = ({ start, end }: { start: Date; end: Date }) => {
 
 const getThisYearStartAndEnd = () => {
   const today = new Date();
-  const firstDayOfMonth = new Date(today.getFullYear(), 0, 1);
-  const lastDayOfMonth = new Date(today.getFullYear(), 11, 31);
+  const firstDayOfYear = new Date(Date.UTC(today.getFullYear(), 0, 1));
+  const lastDayOfYear = new Date(Date.UTC(today.getFullYear(), 11, 31));
 
-  return formatStartAndEndDate({ start: firstDayOfMonth, end: lastDayOfMonth });
+  return formatStartAndEndDate({ start: firstDayOfYear, end: lastDayOfYear });
 };
 
 const getThisMonthStartAndEnd = () => {
   const today = new Date();
-  const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+  const lastDayOfMonth = new Date(
+    Date.UTC(today.getFullYear(), today.getMonth() + 1, 0),
+  );
   const firstDayOfMonth = new Date(today.setDate(1));
 
   return formatStartAndEndDate({ start: firstDayOfMonth, end: lastDayOfMonth });
