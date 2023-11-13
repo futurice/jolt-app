@@ -9,7 +9,7 @@ import { GetJoltReportFunction } from "./functions/get_jolt_report.ts";
 export default Manifest({
   name: "Jolt App",
   description: "Brighten someone's day with a heartfelt thank you",
-  icon: "assets/icon.png",
+  icon: "assets/jolt-image.jpeg",
   functions: [CreateJoltFunction, GetJoltReportFunction],
   workflows: [GiveJoltWorkflow, ReportJoltsWorkflow],
   datastores: [JoltDatastore],

@@ -1,0 +1,11 @@
+{
+  "apps": {
+    "T02S2B3ES": {
+      "app_id": "A065CV377PB",
+      "IsDev": false,
+      "team_domain": "futurice",
+      "team_id": "T02S2B3ES"
+    }
+  },
+  "default": "futurice"
+}
